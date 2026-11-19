@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #eab308;
+  --gold-light: #facc15;
+  --gold-dark: #ca8a04;
+  --charcoal-900: #1a1a1a;
+  --charcoal-800: #242424;
+  --charcoal-700: #2e2e2e;
+  --charcoal-600: #3a3a3a;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-[#1a1a1a] text-white antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #242424;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #eab308;
+  }
+}
+
+@layer components {
+  /* ---- Gold Button ---- */
+  .btn-gold {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm
+           bg-gradient-to-r from-yellow-400 to-amber-500 text-gray-900
+           hover:from-yellow-300 hover:to-amber-400
+           transition-all duration-200 shadow-lg shadow-yellow-500/20
+           hover:shadow-yellow-500/40 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-outline-gold {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm
+           border border-yellow-500/40 text-yellow-400
+           hover:bg-yellow-500/10 hover:border-yellow-400
+           transition-all duration-200;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm text-gray-400
+           hover:text-white hover:bg-white/5 transition-all duration-150;
+  }
+
+  /* ---- Card ---- */
+  .card {
+    @apply bg-[#242424] border border-white/10 rounded-xl;
+  }
+
+  .card-gold {
+    @apply bg-[#242424] border border-yellow-500/20 rounded-xl;
+  }
+
+  /* ---- Input ---- */
+  .input-gold {
+    @apply w-full bg-[#1a1a1a] border border-white/10 rounded-lg px-3 py-2
+           text-white placeholder-gray-600 text-sm
+           focus:outline-none focus:border-yellow-500/60 focus:ring-1 focus:ring-yellow-500/20
+           transition-all duration-150;
+  }
+
+  /* ---- Section heading ---- */
+  .section-title {
+    @apply text-2xl font-bold text-white;
+  }
+
+  .section-subtitle {
+    @apply text-gray-400 text-sm leading-relaxed;
+  }
+
+  /* ---- Formula display ---- */
+  .formula-block {
+    @apply bg-[#1a1a1a] border border-yellow-500/20 rounded-lg p-4
+           font-mono text-sm text-yellow-300;
+  }
+
+  .result-block {
+    @apply bg-gradient-to-r from-yellow-500/10 to-amber-500/5
+           border border-yellow-500/30 rounded-lg p-4;
+  }
+
+  /* ---- Step indicator ---- */
+  .step-indicator {
+    @apply w-8 h-8 rounded-full border-2 flex items-center justify-center
+           text-xs font-bold transition-all duration-300;
+  }
+
+  .step-indicator.completed {
+    @apply bg-yellow-500 border-yellow-500 text-gray-900;
+  }
+
+  .step-indicator.active {
+    @apply bg-yellow-500/20 border-yellow-500 text-yellow-400
+           shadow-lg shadow-yellow-500/20;
+  }
+
+  .step-indicator.inactive {
+    @apply bg-transparent border-white/20 text-gray-500;
+  }
+
+  /* ---- Circuit panel ---- */
+  .circuit-panel {
+    @apply bg-[#1a1a1a] border border-white/10 rounded-xl overflow-hidden;
+  }
+
+  /* ---- Theorem badge ---- */
+  .theorem-badge {
+    @apply px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider;
+  }
+
+  .theorem-badge.thevenin {
+    @apply bg-yellow-500/20 text-yellow-400 border border-yellow-500/30;
+  }
+
+  .theorem-badge.norton {
+    @apply bg-amber-500/20 text-amber-400 border border-amber-500/30;
+  }
+
+  /* ---- Navigation ---- */
+  .nav-link {
+    @apply text-sm text-gray-400 hover:text-white transition-colors duration-150
+           px-3 py-1.5 rounded-md hover:bg-white/5;
+  }
+
+  .nav-link.active {
+    @apply text-yellow-400 bg-yellow-500/10;
+  }
+
+  /* ---- Circuit SVG ---- */
+  .circuit-svg {
+    @apply w-full h-full;
+  }
+
+  /* ---- Math formula ---- */
+  .math-formula {
+    @apply font-mono text-yellow-200 bg-black/30 px-2 py-0.5 rounded;
+  }
+
+  /* ---- Animated current flow ---- */
+  @keyframes current-flow {
+    0% { stroke-dashoffset: 30; }
+    100% { stroke-dashoffset: 0; }
+  }
+
+  .current-flow-animation {
+    stroke-dasharray: 6 4;
+    animation: current-flow 0.8s linear infinite;
+  }
+
+  /* ---- Source deactivation ---- */
+  .source-deactivated {
+    opacity: 0.4;
+    transition: opacity 0.5s ease;
+  }
+
+  .source-short {
+    stroke: #eab308 !important;
+    stroke-width: 2.5px !important;
+  }
+
+  /* ---- Load removal animation ---- */
+  .load-removing {
+    animation: loadRemove 0.6s ease-out forwards;
+  }
+
+  @keyframes loadRemove {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(10px); }
+  }
+
+  /* ---- Equivalent circuit appear ---- */
+  .equiv-appear {
+    animation: equivAppear 0.5s ease-out forwards;
+  }
+
+  @keyframes equivAppear {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+}
+
+/* ---- Circuit board background pattern ---- */
+.circuit-bg {
+  background-color: #1a1a1a;
+  background-image: 
+    linear-gradient(rgba(234, 179, 8, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(234, 179, 8, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ---- Gold gradient text ---- */
+.gold-text {
+  background: linear-gradient(135deg, #eab308, #f59e0b, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---- Glow effects (subtle) ---- */
+.glow-gold {
+  box-shadow: 0 0 20px rgba(234, 179, 8, 0.15);
+}
+
+.glow-gold-sm {
+  box-shadow: 0 0 10px rgba(234, 179, 8, 0.1);
+}
+
+/* ---- Loading spinner ---- */
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(234, 179, 8, 0.2);
+  border-top-color: #eab308;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
